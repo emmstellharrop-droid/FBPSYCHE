@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FutureBlock</title>
+<style>
+body{font-family:Arial;background:#667eea;margin:0;padding:10px}
+.box{background:white;padding:20px;border-radius:10px;margin-bottom:10px}
+button{background:#667eea;color:white;border:none;padding:15px;border-radius:8px;width:100%;margin-bottom:10px;font-weight:bold}
+.msg{background:#f0f0f0;padding:15px;border-radius:8px;margin-bottom:10px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🚀 FutureBlock System</h2>
+<p>Click to send instantly!</p>
+<button onclick="send('🧠 FB PSYCHE | Morning Mindset\n\nAnother day. Another chance.\n\nMarket doesn\'t care about feelings.\nIt rewards discipline.\n\nDo YOUR part today. 💪')">🧠 Morning Psyche</button>
+<button onclick="send('🧠 FB PSYCHE | FOMO Destroyer\n\nMissed a pump?\n\nGood. You dodged the top.\n\nFOMO = Retail gives money to pros.\n\nBe patient. 📈')">🧠 FOMO Check</button>
+<button onclick="send('🧠 FB PSYCHE | Discipline Audit\n\nToday:\n✅ Follow plan?\n✅ Respect stops?\n✅ Manage size?\n✅ No emotion?\n\nYes to all? Winning. 📊')">🧠 Discipline</button>
+<button onclick="send('📊 FB STATS | Daily Data\n\nBTC: $45,234 (+2.3%)\nETH: $2,456 (+1.8%)\nMarket Cap: $1.8T\n\n24h Vol: $82B\nFear/Greed: 65\n\nData only. 📈')">📊 Daily Stats</button>
+<button onclick="send('📝 FB JOURNAL | Daily Reminder\n\nJournaled today?\n\nEven if no trades:\n• What observed?\n• What learned?\n• What tomorrow?\n\nConsistency = Success. 💪')">📝 Journal</button>
+<button onclick="send('❓ FB QUIZ | Daily Question\n\nWhat\'s most important?\n\nA) Entry price\nB) Target price\nC) Stop loss\n\nReply A, B, or C. 🎯')">❓ Quiz</button>
+<button onclick="send('📰 FB NEWS | Daily Digest\n\nTop 3:\n\n1. Exchange announces features\n2. Regulation updates\n3. Protocol upgrade\n\nVerified only. No hype. 📋')">📰 News</button>
+</div>
+<script>
+function send(txt){
+const url='https://api.telegram.org/bot8240137505:AAHoPBbMA8L8hTDc6fdc3XpS_2XnxEhKASg/sendMessage?chat_id=-1003027769497&text='+encodeURIComponent(txt);
+window.open(url,'_blank');
+}
+</script>
+</body>
+</html>
