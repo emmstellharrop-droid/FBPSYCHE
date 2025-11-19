@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futures Block Insights | Trading Command Center</title>
+    <title>FutureBlock Pro | Trading Command Center</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -177,7 +177,7 @@
             font-weight: 500;
         }
 
-        /* Command Grid - Bloximity Style */
+        /* Command Grid */
         .command-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -212,10 +212,6 @@
             transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.15);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .command-card:active {
-            transform: translateY(-2px);
         }
 
         .command-header {
@@ -468,6 +464,36 @@
             cursor: pointer;
         }
 
+        /* Loading */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .command-grid {
@@ -485,6 +511,12 @@
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Sending message to your community...</div>
+    </div>
+
     <!-- Preview Modal -->
     <div class="preview-modal" id="previewModal">
         <div class="preview-content glass">
@@ -512,7 +544,7 @@
             <div class="tagline">Trading Community Command Center</div>
             <div class="status-pill">
                 <i class="fas fa-circle"></i>
-                <span>Active • 12 Modules • AI Enhanced</span>
+                <span>Active • 12 Modules • Connected to @FutureBlockBBot</span>
             </div>
         </div>
 
@@ -548,10 +580,10 @@
             </div>
         </div>
 
-        <!-- Command Grid - Bloximity Style -->
+        <!-- Command Grid -->
         <div class="command-grid">
             <!-- Morning Module -->
-            <div class="command-card glass" onclick="openMorningDashboard()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-morning">
                         <i class="fas fa-sun"></i>
@@ -572,17 +604,17 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); previewMorningSequence()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="previewMorningSequence()">
                         <i class="fas fa-play"></i>Run Sequence
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showMorningTemplates()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showMorningTemplates()">
                         <i class="fas fa-list"></i>Templates
                     </button>
                 </div>
             </div>
 
             <!-- Education Module -->
-            <div class="command-card glass" onclick="openEducationHub()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-education">
                         <i class="fas fa-graduation-cap"></i>
@@ -603,17 +635,17 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); previewRandomEducation()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="previewRandomEducation()">
                         <i class="fas fa-shuffle"></i>Random Lesson
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showEducationModules()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showEducationModules()">
                         <i class="fas fa-book"></i>Browse
                     </button>
                 </div>
             </div>
 
             <!-- Psychology Module -->
-            <div class="command-card glass" onclick="openPsychologyLab()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-psychology">
                         <i class="fas fa-mind-share"></i>
@@ -634,17 +666,17 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); previewPsychologyBoost()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="previewPsychologyBoost()">
                         <i class="fas fa-brain"></i>Mindset Boost
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showPsychologyTools()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showPsychologyTools()">
                         <i class="fas fa-tools"></i>Tools
                     </button>
                 </div>
             </div>
 
             <!-- Community Module -->
-            <div class="command-card glass" onclick="openCommunityHub()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-community">
                         <i class="fas fa-users"></i>
@@ -665,17 +697,17 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); previewCommunityEngagement()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="previewCommunityEngagement()">
                         <i class="fas fa-bullhorn"></i>Engage Now
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showCommunityActivities()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showCommunityActivities()">
                         <i class="fas fa-chart-network"></i>Activities
                     </button>
                 </div>
             </div>
 
             <!-- AI Generator -->
-            <div class="command-card glass" onclick="openAILab()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-ai">
                         <i class="fas fa-robot"></i>
@@ -696,17 +728,17 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); openAIGenerator()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="openAIGenerator()">
                         <i class="fas fa-wand-magic"></i>Generate
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showAITemplates()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showAITemplates()">
                         <i class="fas fa-stars"></i>Templates
                     </button>
                 </div>
             </div>
 
             <!-- Scheduler -->
-            <div class="command-card glass" onclick="openScheduler()">
+            <div class="command-card glass">
                 <div class="command-header">
                     <div class="command-icon command-schedule">
                         <i class="fas fa-clock"></i>
@@ -727,10 +759,10 @@
                     </div>
                 </div>
                 <div class="command-actions">
-                    <button class="cmd-btn cmd-btn-primary" onclick="event.stopPropagation(); scheduleRandomMessage()">
+                    <button class="cmd-btn cmd-btn-primary" onclick="scheduleRandomMessage()">
                         <i class="fas fa-plus"></i>Schedule
                     </button>
-                    <button class="cmd-btn cmd-btn-secondary" onclick="event.stopPropagation(); showSchedule()">
+                    <button class="cmd-btn cmd-btn-secondary" onclick="showSchedule()">
                         <i class="fas fa-calendar"></i>View Queue
                     </button>
                 </div>
@@ -745,7 +777,7 @@
                     Quick Actions
                 </div>
                 <div style="color: var(--text-secondary); font-size: 0.9em;">
-                    One-click operations
+                    Connected to @FutureBlockBBot
                 </div>
             </div>
             <div class="actions-strip">
@@ -785,16 +817,16 @@
         <div class="footer">
             <p>FutureBlock Pro © 2024 | Trading Community Command Center</p>
             <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.8em;">
-                Powered by AI • Built for Community Growth • Professional Grade
+                Powered by AI • Connected to @FutureBlockBBot • Professional Grade
             </p>
         </div>
     </div>
 
     <script>
-        // Configuration
+        // Configuration - YOUR BOT SETTINGS
         const BOT_CONFIG = {
             token: "8240137505:AAHoPBbMA8L8hTDc6fdc3XpS_2XnxEhKASg",
-            chatId: "-100302776945"
+            chatId: "-1003027769497"
         };
 
         // Message Database
@@ -876,6 +908,58 @@
             currentPreviewCategory = '';
         }
 
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // CORE MESSAGE SENDING FUNCTION - IMPROVED
+        function sendMessage(content, category) {
+            showLoading();
+            
+            // Create Telegram URL
+            const url = `https://api.telegram.org/bot${BOT_CONFIG.token}/sendMessage`;
+            const params = {
+                chat_id: BOT_CONFIG.chatId,
+                text: content,
+                parse_mode: 'Markdown'
+            };
+            
+            // Use fetch with proper error handling
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                if (data.ok) {
+                    // Update statistics
+                    statistics.totalMessages++;
+                    statistics.todayMessages++;
+                    statistics.categoryCounts[category]++;
+                    if (category === 'ai_generated') statistics.aiGenerated++;
+                    saveStatistics();
+                    updateStatistics();
+                    
+                    alert('✅ Message sent successfully to @Futureblockinsights_fbs1!');
+                } else {
+                    alert(`❌ Failed to send: ${data.description}\n\nPlease ensure:\n1. Bot is admin in channel\n2. Channel ID is correct\n3. Bot has posting rights`);
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                console.error('Error:', error);
+                alert('❌ Network error. Please check your connection and try again.');
+            });
+        }
+
         function sendPreviewMessage() {
             if (currentPreviewMessage) {
                 sendMessage(currentPreviewMessage, currentPreviewCategory);
@@ -883,28 +967,9 @@
             }
         }
 
-        // Core Message Sending
-        function sendMessage(content, category) {
-            const url = `https://api.telegram.org/bot${BOT_CONFIG.token}/sendMessage?chat_id=${BOT_CONFIG.chatId}&text=${encodeURIComponent(content)}`;
-            
-            window.open(url, '_blank');
-            
-            // Update statistics
-            statistics.totalMessages++;
-            statistics.todayMessages++;
-            statistics.categoryCounts[category]++;
-            if (category === 'ai_generated') statistics.aiGenerated++;
-            saveStatistics();
-            updateStatistics();
-            
-            setTimeout(() => {
-                alert('🚀 Message sent to your community!');
-            }, 500);
-        }
-
         // Preview Functions
         function previewMorningSequence() {
-            const message = MESSAGES.morning[0].content + '\n\n' + MESSAGES.education[0].content;
+            const message = MESSAGES.morning[0].content + '\n\n' + MESSAGES.morning[1].content;
             showPreview(message, 'morning');
         }
 
@@ -930,33 +995,8 @@
             previewMorningSequence();
         }
 
-        // Module Functions
-        function openMorningDashboard() {
-            alert('🌅 Opening Morning Engine Dashboard...');
-            // In full version, this would open a detailed dashboard
-        }
-
-        function openEducationHub() {
-            alert('🎓 Opening Education Hub...');
-        }
-
-        function openPsychologyLab() {
-            alert('🧠 Opening Psychology Lab...');
-        }
-
-        function openCommunityHub() {
-            alert('👥 Opening Community Hub...');
-        }
-
-        function openAILab() {
-            const topic = prompt('Enter topic for AI generation:');
-            if (topic) {
-                generateAIMessage(topic);
-            }
-        }
-
-        function openScheduler() {
-            alert('⏰ Opening Smart Scheduler...');
+        function previewRandomEducational() {
+            previewRandomEducation();
         }
 
         // AI Generation
@@ -1004,7 +1044,7 @@
             scheduleRandomMessage();
         }
 
-        // Statistics
+        // Statistics Management
         function updateStatistics() {
             document.getElementById('totalMessages').textContent = statistics.totalMessages;
             document.getElementById('todayMessages').textContent = statistics.todayMessages;
